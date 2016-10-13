@@ -33,7 +33,7 @@ int main(void) {
     runi_add_primitive(env, "socket-set-port", torger_set_socket_port);
     runi_add_primitive(env, "bind", torger_bind);
     runi_add_primitive(env, "listen", torger_listen);
-    // runi_add_primitive(env, "accept", torger_accept);
+    runi_add_primitive(env, "accept", torger_accept);
     runi_add_primitive(env, "close", torger_close);
 
     for (;;) {

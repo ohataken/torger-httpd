@@ -18,7 +18,7 @@ struct runi_object *torger_bind(struct runi_object *env, struct runi_object *lis
 
 struct runi_object *torger_listen(struct runi_object *env, struct runi_object *list);
 
-// struct runi_object *torger_accept(struct runi_object *env, struct runi_object *list);
+struct runi_object *torger_accept(struct runi_object *env, struct runi_object *list);
 
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list);
 

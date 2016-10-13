@@ -6,6 +6,10 @@ int reuseaddr = 1;
 
 struct sockaddr_in torger_sockaddr;
 
+struct sockaddr_in torger_sockaddr_client;
+
+socklen_t torger_addrlen_client;
+
 struct runi_object *torger_socket(struct runi_object *env, struct runi_object *list) {
     torger_socketd = socket(AF_INET, SOCK_STREAM, 0);
     setsockopt(torger_socketd, SOL_SOCKET, SO_REUSEADDR, &reuseaddr, sizeof(reuseaddr));
@@ -27,9 +31,9 @@ struct runi_object *torger_listen(struct runi_object *env, struct runi_object *l
     return runi_make_integer(listen(torger_socketd, 512));
 }
 
-// struct runi_object *torger_accept(struct runi_object *env, struct runi_object *list) {
-//     return runi_make_integer(accept(torger_socketd, addr, addlen));
-// }
+struct runi_object *torger_accept(struct runi_object *env, struct runi_object *list) {
+    return runi_make_integer(accept(torger_socketd, (struct sockaddr *)&torger_sockaddr_client, &torger_addrlen_client));
+}
 
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list) {
     close(torger_socketd);
