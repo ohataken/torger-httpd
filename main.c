@@ -1,4 +1,5 @@
 #include "runi_lisp.h"
+#include "torger_socket.h"
 
 #include <stdio.h>
 
@@ -27,6 +28,13 @@ int main(void) {
     runi_add_primitive(env, "=", runi_prim_num_eq);
     runi_add_primitive(env, "println", runi_prim_println);
     runi_add_primitive(env, "exit", runi_prim_exit);
+
+    runi_add_primitive(env, "socket", torger_socket);
+    runi_add_primitive(env, "socket-set-port", torger_set_socket_port);
+    runi_add_primitive(env, "bind", torger_bind);
+    runi_add_primitive(env, "listen", torger_listen);
+    // runi_add_primitive(env, "accept", torger_accept);
+    runi_add_primitive(env, "close", torger_close);
 
     for (;;) {
         struct runi_object *expr = runi_parse();
