@@ -67,6 +67,8 @@ void __attribute((noreturn)) runi_error(char *fmt, ...);
 
 struct runi_object *runi_make_special(int type);
 
+struct runi_object *runi_make_integer(int integer);
+
 struct runi_object *runi_make_env(struct runi_object *vars, struct runi_object *parent);
 
 struct runi_object *runi_cons(struct runi_object *car, struct runi_object *cdr);
