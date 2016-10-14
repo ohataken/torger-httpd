@@ -35,6 +35,20 @@ struct runi_object *torger_accept(struct runi_object *env, struct runi_object *l
     return runi_make_integer(accept(torger_socketd, (struct sockaddr *)&torger_sockaddr_client, &torger_addrlen_client));
 }
 
+struct runi_object *torger_recv(struct runi_object *env, struct runi_object *list) {
+    if (runi_list_length(list) != 1)
+        runi_error("Malformed recv");
+
+    struct runi_object *obj = runi_eval(env, list->car);
+
+    if (obj->type != RUNI_INTEGER)
+        runi_error("recv only takes a integer");
+
+    char *buffer = malloc(sizeof(char) * 128);
+    recv(obj->integer, buffer, 128, 0);
+    return runi_nil;
+}
+
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list) {
     close(torger_socketd);
     return runi_nil;

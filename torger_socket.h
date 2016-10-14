@@ -20,6 +20,8 @@ struct runi_object *torger_listen(struct runi_object *env, struct runi_object *l
 
 struct runi_object *torger_accept(struct runi_object *env, struct runi_object *list);
 
+struct runi_object *torger_recv(struct runi_object *env, struct runi_object *list);
+
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list);
 
 // void sigint_handler(int signo);
