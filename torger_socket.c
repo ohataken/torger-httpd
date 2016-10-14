@@ -49,6 +49,19 @@ struct runi_object *torger_recv(struct runi_object *env, struct runi_object *lis
     return runi_make_string(buffer);
 }
 
+struct runi_object *torger_send(struct runi_object *env, struct runi_object *list) {
+    if (runi_list_length(list) != 2)
+        runi_error("Malformed send");
+
+    struct runi_object *sock = runi_eval(env, list->car);
+    struct runi_object *buff = runi_eval(env, list->cdr->car);
+
+    if (sock->type != RUNI_INTEGER || buff->type != RUNI_STRING)
+        runi_error("send only takes integer and string");
+
+    return runi_make_integer(send(sock->integer, buff->string, strlen(buff->string), 0));
+}
+
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list) {
     close(torger_socketd);
     return runi_nil;

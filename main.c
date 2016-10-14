@@ -35,6 +35,7 @@ int main(void) {
     runi_add_primitive(env, "listen", torger_listen);
     runi_add_primitive(env, "accept", torger_accept);
     runi_add_primitive(env, "recv", torger_recv);
+    runi_add_primitive(env, "send", torger_send);    
     runi_add_primitive(env, "close", torger_close);
 
     for (;;) {
