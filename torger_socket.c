@@ -46,7 +46,7 @@ struct runi_object *torger_recv(struct runi_object *env, struct runi_object *lis
 
     char *buffer = malloc(sizeof(char) * 128);
     recv(obj->integer, buffer, 128, 0);
-    return runi_nil;
+    return runi_make_string(buffer);
 }
 
 struct runi_object *torger_close(struct runi_object *env, struct runi_object *list) {
