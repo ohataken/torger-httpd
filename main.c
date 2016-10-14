@@ -38,6 +38,10 @@ int main(void) {
     runi_add_primitive(env, "recv", torger_recv);
     runi_add_primitive(env, "send", torger_send);
     runi_add_primitive(env, "close", torger_close);
+    runi_add_primitive(env, "fd-zero", torger_fd_zero);
+    runi_add_primitive(env, "fd-set-read", torger_fd_set_to_readfds);
+    runi_add_primitive(env, "fd-set-write", torger_fd_set_to_writefds);
+    runi_add_primitive(env, "select", torger_select);
 
     for (;;) {
         struct runi_object *expr = runi_parse();
